@@ -3,8 +3,20 @@ name = "b64-cli"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "b64"
+path = "src/bin/main.rs"
 
 [dependencies]
-clap = "4.5"
+clap = { version = "4.5", features = ["derive"] }
 base64 = "0.22"
+anyhow = "1"
+wild = "2.2"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.56.0", features = [
+    "Win32_Foundation",
+    "Win32_Security_Authorization",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Memory",
+] }
